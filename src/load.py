@@ -18,14 +18,10 @@ def get_worksheet(class_name: str):
     workbook: openpyxl.WorkSheet
         Got workbook
     """
-    workbook = openpyxl.Workbook("questions.xlsx");
+    workbook = openpyxl.load_workbook("questions.xlsx");
     worksheet = workbook[class_name]
 
-
-    if workbook is None:
-        raise NameError(f"work sheet {class_name} is not found")
-
-    return workbook
+    return worksheet
 
 
 def get_cells(worksheet, get_range: str):

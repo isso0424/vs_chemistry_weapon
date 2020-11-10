@@ -14,7 +14,7 @@ class Questioner:
     def load_question(self, index: int) -> Question:
         question_text = get_cells(self.worksheet, f"I{index}").value
         answer = get_cells(self.worksheet, f"J{index}").value
-        wrong_cells = get_cells(self.worksheet, f"K{index}:M{index}")
+        wrong_cells = get_cells(self.worksheet, f"K{index}:M{index}")[0]
         wrongs = [wrong_cells[i].value for i in range(3)]
         question = Question(question_text, answer, wrongs)
 
