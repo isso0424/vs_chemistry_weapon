@@ -37,9 +37,20 @@ class Questioner:
         """
         start interprinter
         """
-        for index in range(4, 45):
+        index = 4
+        fuck = 0
+        while True:
             question = Question.create_from_cell(index, self.worksheet)
+            if question.answer is None:
+                fuck += 1
+                index += 1
+                if fuck >= 3:
+                    break
+                continue
+            else:
+                fuck = 0
             self.proposing(question)
+            index += 1
         print("finish!!!")
         acc = self.collect_count / 41
         print(f"Result\n------\nCollect: {self.collect_count} Wrong: {self.wrong_count} ACC: {acc}")
