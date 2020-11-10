@@ -1,7 +1,6 @@
 """
 Question interprinter
 """
-from src.load import get_cells
 from src.types.question import Question
 
 
@@ -13,22 +12,6 @@ class Questioner:
         self.worksheet = worksheet
         self.collect_count = 0
         self.wrong_count = 0
-
-    def load_question(self, index: int) -> Question:
-        """
-        Create question object from index
-        params
-        ------
-        index: int
-            question row number
-        """
-        question_text = get_cells(self.worksheet, f"I{index}").value
-        answer = get_cells(self.worksheet, f"J{index}").value
-        wrong_cells = get_cells(self.worksheet, f"K{index}:M{index}")[0]
-        wrongs = [wrong_cells[i].value for i in range(3)]
-        question = Question(question_text, answer, wrongs)
-
-        return question
 
     def proposing(self, question: Question):
         """
@@ -55,9 +38,8 @@ class Questioner:
         start interprinter
         """
         for index in range(4, 45):
-            question = self.load_question(index)
+            question = Question.create_from_cell(index, self.worksheet)
             self.proposing(question)
         print("finish!!!")
         acc = self.collect_count / 41
         print(f"Result\n------\nCollect: {self.collect_count} Wrong: {self.wrong_count} ACC: {acc}")
-
