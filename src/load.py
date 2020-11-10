@@ -15,6 +15,7 @@ def get_worksheets():
     """
     workbook = openpyxl.load_workbook("questions.xlsx");
     worksheets = workbook.worksheets
+    print(len(worksheets))
     judge_value = get_cells(worksheets[0], "F3").value
     if judge_value == "問題（日本語）":
         Question.all_classes = True

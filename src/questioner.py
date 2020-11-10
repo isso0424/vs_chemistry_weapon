@@ -8,6 +8,8 @@ class Questioner:
     """
     Question proposing interprinter
     """
+    collect_count = 0
+    wrong_count = 0
     def __init__(self, worksheet):
         self.worksheet = worksheet
         self.collect_count = 0
@@ -51,6 +53,11 @@ class Questioner:
                 fuck = 0
             self.proposing(question)
             index += 1
+        Questioner.collect_count += self.collect_count
+        Questioner.wrong_count += self.wrong_count
+
+    @staticmethod
+    def finish():
         print("finish!!!")
-        acc = self.collect_count / 41
-        print(f"Result\n------\nCollect: {self.collect_count} Wrong: {self.wrong_count} ACC: {acc}")
+        acc = Questioner.collect_count / (Questioner.collect_count + Questioner.wrong_count)
+        print(f"Result\n------\nCollect: {Questioner.collect_count} Wrong: {Questioner.wrong_count} ACC: {acc}")

@@ -19,6 +19,7 @@ def main() -> None:
     for i in range(0, len(worksheets)):
         interprinter = Questioner(worksheets[i])
         interprinter.start()
+    Questioner.finish()
 
 if __name__ == "__main__":
     main()
