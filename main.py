@@ -5,7 +5,7 @@ from src.load import get_worksheet
 from src.questioner import Questioner
 
 
-def main(class_name: str) -> None:
+def main() -> None:
     """
     Entry function
     params
@@ -15,9 +15,9 @@ def main(class_name: str) -> None:
         It use for search sheet.
         Ex: "2-2", "2-5"
     """
-    worksheet = get_worksheet(class_name)
+    worksheet = get_worksheet()
     interprinter = Questioner(worksheet)
     interprinter.start()
 
 if __name__ == "__main__":
-    main("2-2")
+    main()

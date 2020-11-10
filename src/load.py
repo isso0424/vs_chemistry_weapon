@@ -4,15 +4,9 @@ Load data from worksheet
 import openpyxl
 
 
-def get_worksheet(class_name: str):
+def get_worksheet():
     """
     Get worksheet
-    params
-    ------
-    class_name: str
-        Your class name.
-        It use for search sheet.
-        Ex: "2-2", "2-5"
     return
     ------
     workbook: openpyxl.WorkSheet
