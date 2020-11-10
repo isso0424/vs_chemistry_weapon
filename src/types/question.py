@@ -32,7 +32,7 @@ class Question:
 
         return text
 
-    def check_answer(self, response: str) -> bool:
+    def check_answer(self, response: int) -> bool:
         """
         Check answer in question
         params
@@ -43,4 +43,4 @@ class Question:
         ------
         question result
         """
-        return response == self.answer
+        return self.answer_list[response - 1] == self.answer
