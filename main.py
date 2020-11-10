@@ -1,7 +1,8 @@
 """
 This file is entry point
 """
-import openpyxl
+from src.load import get_cells
+
 
 def main(class_name: str) -> None:
     """
@@ -13,4 +14,4 @@ def main(class_name: str) -> None:
         It use for search sheet.
         Ex: "2-2", "2-5"
     """
-    workbook = openpyxl.Workbook("questions.xlsx");
+    cells = get_cells
