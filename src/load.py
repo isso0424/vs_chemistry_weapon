@@ -2,9 +2,10 @@
 Load data from worksheet
 """
 import openpyxl
+from src.types.question import Question
+from src.cells import get_cells
 
-
-def get_worksheet():
+def get_worksheets():
     """
     Get worksheet
     return
@@ -13,27 +14,9 @@ def get_worksheet():
         Got workbook
     """
     workbook = openpyxl.load_workbook("questions.xlsx");
-    worksheet = workbook.worksheets[0]
+    worksheets = workbook.worksheets
+    judge_value = get_cells(worksheets[0], "F3").value
+    if judge_value == "問題（日本語）":
+        Question.all_classes = True
 
-    return worksheet
-
-
-def get_cells(worksheet, get_range: str):
-    """
-    Get cells from sheet
-    params
-    ------
-    workbook: openpyxl.WorkSheet
-        loaded worksheet.
-    get_range: str
-        Get cells range.
-        Ex: "A1:B3"
-
-    return
-    ------
-    cells: Tuple[Cell]
-        Got cells tuple
-    """
-    cells = worksheet[get_range]
-
-    return cells
+    return worksheets

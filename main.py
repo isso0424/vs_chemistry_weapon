@@ -1,7 +1,7 @@
 """
 This file is entry point
 """
-from src.load import get_worksheet
+from src.load import get_worksheets
 from src.questioner import Questioner
 
 
@@ -15,9 +15,10 @@ def main() -> None:
         It use for search sheet.
         Ex: "2-2", "2-5"
     """
-    worksheet = get_worksheet()
-    interprinter = Questioner(worksheet)
-    interprinter.start()
+    worksheets = get_worksheets()
+    for i in range(0, len(worksheets)):
+        interprinter = Questioner(worksheets[i])
+        interprinter.start()
 
 if __name__ == "__main__":
     main()

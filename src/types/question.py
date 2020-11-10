@@ -4,13 +4,29 @@ Type for a question.
 from typing import List
 from random import sample
 
-from src.load import get_cells
+from src.cells import get_cells
+
+
+ALL_CLASSES_COLUMNS = {
+    "question": "F",
+    "answer": "G",
+    "wrong_start": "H",
+    "wrong_end": "J",
+}
+
+ONLY_ONE_CLASS_COLUMNS = {
+    "question": "I",
+    "answer": "J",
+    "wrong_start": "K",
+    "wrong_end": "M",
+}
 
 
 class Question:
     """
     Type for a question
     """
+    all_classes = False
     def __init__(self, question: str, answer: str, wrongs: List[str]):
         self.question = question
         self.answer = answer
@@ -32,9 +48,16 @@ class Question:
         Question
             created question
         """
-        question_text = get_cells(worksheet, f"I{index}").value
-        answer = get_cells(worksheet, f"J{index}").value
-        wrong_cells = get_cells(worksheet, f"K{index}:M{index}")[0]
+        if Question.all_classes:
+            columns = ALL_CLASSES_COLUMNS
+        else:
+            columns = ONLY_ONE_CLASS_COLUMNS
+        question_text = get_cells(worksheet, f"{columns.get('question')}{index}").value
+        answer = get_cells(worksheet, f"{columns.get('answer')}{index}").value
+        wrong_cells = get_cells(
+            worksheet,
+            f"{columns.get('wrong_start')}{index}:{columns.get('wrong_end')}{index}",
+        )[0]
         wrongs = [wrong_cells[i].value for i in range(3)]
 
         return Question(question_text, answer, wrongs)
