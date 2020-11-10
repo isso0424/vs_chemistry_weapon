@@ -19,7 +19,7 @@ def get_worksheet(class_name: str):
         Got workbook
     """
     workbook = openpyxl.load_workbook("questions.xlsx");
-    worksheet = workbook[class_name]
+    worksheet = workbook[0]
 
     return worksheet
 
