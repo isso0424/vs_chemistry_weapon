@@ -15,9 +15,21 @@ def get_worksheets():
     """
     workbook = openpyxl.load_workbook("questions.xlsx");
     worksheets = workbook.worksheets
-    print(len(worksheets))
-    judge_value = get_cells(worksheets[0], "F3").value
-    if judge_value == "問題（日本語）":
-        Question.all_classes = True
 
     return worksheets
+
+def get_worksheet(worksheets, index):
+    worksheet = worksheets[index]
+    for row in range(1, 6):
+        char_code = ord("A")
+        for _ in range(0, 15):
+            judge_value = get_cells(worksheet, f"{chr(char_code)}{row}").value
+            if "問題" in str(judge_value):
+                Question.set_column(char_code)
+                break
+            char_code += 1
+        if Question.question_column != "":
+            break
+    if Question.question_column == "":
+        raise NameError("Question Column not found")
+    return worksheet

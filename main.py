@@ -1,7 +1,7 @@
 """
 This file is entry point
 """
-from src.load import get_worksheets
+from src.load import get_worksheets, get_worksheet
 from src.questioner import Questioner
 
 
@@ -17,7 +17,8 @@ def main() -> None:
     """
     worksheets = get_worksheets()
     for i in range(0, len(worksheets)):
-        interprinter = Questioner(worksheets[i])
+        worksheet = get_worksheet(worksheets, i)
+        interprinter = Questioner(worksheet)
         interprinter.start()
     Questioner.finish()
 
