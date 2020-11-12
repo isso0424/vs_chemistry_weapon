@@ -37,7 +37,7 @@ class Questioner:
         """
         text = question.create_question()
         print(text)
-        answer = input(">>>")
+        answer = int(input(">>>"))
         if question.check_answer(answer):
             self.collect_count += 1
             print("Collect!!!")

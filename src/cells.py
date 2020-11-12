@@ -15,6 +15,5 @@ def get_cells(worksheet, get_range: str):
         Got cells tuple
     """
     cells = worksheet[get_range]
-    print(get_range)
 
     return cells
