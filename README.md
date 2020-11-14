@@ -6,12 +6,12 @@
 セットアップスクリプト(コピペで使える)
 ```bash
 git clone https://github.com/isso0424/vs_chemistry_weapon
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Usage
 1. ディレクトリ内に`questions.xlsx`という名前で配られた問題を置く
-2. `python main.py`を実行する
+2. `py main.py`を実行する
 3. 問題に答える
 4. 終了後に正答数、誤答数、正答率を表示する
 
